@@ -1,5 +1,5 @@
 // ============================================================================
-// xense-mcap-viewer — Public API (v1.0.0)
+// xense-mcap-viewer — Public API (v0.0.1)
 // ============================================================================
 // Only symbols exported here are part of the stable public contract and
 // subject to semver guarantees. Internal modules may change without notice.

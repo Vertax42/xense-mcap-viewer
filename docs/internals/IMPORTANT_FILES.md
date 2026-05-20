@@ -125,7 +125,7 @@ The 30 files you'll touch most often during deep work, with one-line purpose + k
 | # | File | Why |
 |---|---|---|
 | 67 | `vite.config.ts` | SPA build; manualChunks; COOP/COEP dev headers |
-| 68 | `vite.lib.config.ts` | Library build; `dist-lib`, single `rosview.d.ts` rollup |
+| 68 | `vite.lib.config.ts` | Library build; `dist-lib`, single `xense-mcap-viewer.d.ts` rollup |
 | 69 | `src/entrypoints/index.ts` | Public npm API surface (semver-stable exports) |
 | 70 | `src/entrypoints/{App,main}.tsx` | SPA boot |
 

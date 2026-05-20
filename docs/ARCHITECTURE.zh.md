@@ -665,7 +665,7 @@ export default defineConfig({
 
 ### 7.2 库构建（嵌入式组件）
 
-`vite.lib.config.ts` — 构建为可被 `app/` 引入的 ESM 库；**类型声明在同一轮 `vite build` 内**由 `vite-plugin-dts` 生成，`rollupTypes: true` 借助 API Extractor 合并为单一 `dist-lib/rosview.d.ts`（无需额外脚本）。
+`vite.lib.config.ts` — 构建为可被 `app/` 引入的 ESM 库；**类型声明在同一轮 `vite build` 内**由 `vite-plugin-dts` 生成，`rollupTypes: true` 借助 API Extractor 合并为单一 `dist-lib/xense-mcap-viewer.d.ts`（无需额外脚本）。
 
 要点：`build.lib.entry` 使用**绝对路径**；`dts()` 中设置 `compilerOptions.rootDir = <包>/src` 与 `entryRoot: <包>/src`，避免声明镜像落在 `dist-lib/src/...` 或在 monorepo 非包目录 cwd 下出现空的 `insertTypesEntry` / 空 rollup 结果。完整配置以仓库内 `vite.lib.config.ts` 为准。
 
@@ -716,7 +716,7 @@ export default defineConfig({
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) return 'rosview.css';
+          if (assetInfo.name?.endsWith('.css')) return 'xense-mcap-viewer.css';
           return assetInfo.name || '[name][extname]';
         },
       },
@@ -731,17 +731,17 @@ export default defineConfig({
 ```json
 {
   "name": "xense-mcap-viewer",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "module",
-  "main": "./dist-lib/rosview.es.js",
-  "module": "./dist-lib/rosview.es.js",
-  "types": "./dist-lib/rosview.d.ts",
+  "main": "./dist-lib/xense-mcap-viewer.es.js",
+  "module": "./dist-lib/xense-mcap-viewer.es.js",
+  "types": "./dist-lib/xense-mcap-viewer.d.ts",
   "exports": {
     ".": {
-      "types": "./dist-lib/rosview.d.ts",
-      "import": "./dist-lib/rosview.es.js"
+      "types": "./dist-lib/xense-mcap-viewer.d.ts",
+      "import": "./dist-lib/xense-mcap-viewer.es.js"
     },
-    "./style.css": "./dist-lib/rosview.css"
+    "./style.css": "./dist-lib/xense-mcap-viewer.css"
   },
   "files": ["dist-lib"],
   "scripts": {

@@ -5,7 +5,7 @@
  * surface (compat layer). See the [Vite config reference](https://vite.dev/config/).
  *
  * Declarations are emitted by `vite-plugin-dts` during `vite build`; `rollupTypes: true` uses API
- * Extractor to merge into a single `rosview.d.ts` (see package.json `types`).
+ * Extractor to merge into a single `xense-mcap-viewer.d.ts` (see package.json `types`).
  * Set the plugin `compilerOptions.rootDir` to `<package>/src` and use an absolute `build.lib.entry`;
  * otherwise, when cwd is outside the package in a monorepo, `insertTypesEntry` can emit an empty
  * `export {}` and rollup output may be empty.

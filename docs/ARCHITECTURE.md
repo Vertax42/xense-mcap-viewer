@@ -652,7 +652,7 @@ export default defineConfig({
 
 ### 7.2 Library Build (Embeddable Component)
 
-`vite.lib.config.ts` — outputs an ESM library bundle for npm. **Type declarations are emitted in the same `vite build` run** via `vite-plugin-dts`. With `rollupTypes: true`, API Extractor rolls declarations up to a single `dist-lib/rosview.d.ts` (no separate post-build script).
+`vite.lib.config.ts` — outputs an ESM library bundle for npm. **Type declarations are emitted in the same `vite build` run** via `vite-plugin-dts`. With `rollupTypes: true`, API Extractor rolls declarations up to a single `dist-lib/xense-mcap-viewer.d.ts` (no separate post-build script).
 
 Important: use an **absolute** `build.lib.entry`; in `dts()`, set `compilerOptions.rootDir` and `entryRoot` to `<package>/src` so emitted `.d.ts` mirror as `dist-lib/entrypoints/...` (not `dist-lib/src/...`) and `insertTypesEntry` stays correct when the monorepo is built from a cwd outside this package. See the checked-in `vite.lib.config.ts` for the full config (including `pathsToAliases: false`, worker plugins, and externals).
 
@@ -690,7 +690,7 @@ export default defineConfig({
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         assetFileNames: (a) =>
-          a.name?.endsWith('.css') ? 'rosview.css' : (a.name ?? '[name][extname]'),
+          a.name?.endsWith('.css') ? 'xense-mcap-viewer.css' : (a.name ?? '[name][extname]'),
       },
     },
     cssCodeSplit: false,
@@ -703,16 +703,16 @@ export default defineConfig({
 ```json
 {
   "name": "xense-mcap-viewer",
-  "version": "1.0.0",
-  "main":   "./dist-lib/rosview.es.js",
-  "module": "./dist-lib/rosview.es.js",
-  "types":  "./dist-lib/rosview.d.ts",
+  "version": "0.0.1",
+  "main":   "./dist-lib/xense-mcap-viewer.es.js",
+  "module": "./dist-lib/xense-mcap-viewer.es.js",
+  "types":  "./dist-lib/xense-mcap-viewer.d.ts",
   "exports": {
     ".": {
-      "types":  "./dist-lib/rosview.d.ts",
-      "import": "./dist-lib/rosview.es.js"
+      "types":  "./dist-lib/xense-mcap-viewer.d.ts",
+      "import": "./dist-lib/xense-mcap-viewer.es.js"
     },
-    "./style.css": "./dist-lib/rosview.css"
+    "./style.css": "./dist-lib/xense-mcap-viewer.css"
   },
   "peerDependencies": {
     "react":     "^19.0.0",

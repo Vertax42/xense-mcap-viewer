@@ -179,7 +179,7 @@ Switching files terminates the old worker and constructs a new one — no worker
 ## 4. Two Delivery Forms
 
 - **SPA** (`vite.config.ts`) — `index.html` → `entrypoints/main.tsx` → `entrypoints/App.tsx`. Reads `?url=` query (`file://`, `folder://`, `sample://`, or http). `manualChunks` for dockview / three / uplot / mcap / rosbag / hdf5.
-- **Library** (`vite.lib.config.ts`) — entry `entrypoints/index.ts`. ESM bundle + single rollup'd `rosview.d.ts` (via `vite-plugin-dts`, `rollupTypes: true`). React, three, @react-three/* externalized. CSS extracted to `rosview.css`.
+- **Library** (`vite.lib.config.ts`) — entry `entrypoints/index.ts`. ESM bundle + single rollup'd `xense-mcap-viewer.d.ts` (via `vite-plugin-dts`, `rollupTypes: true`). React, three, @react-three/* externalized. CSS extracted to `xense-mcap-viewer.css`.
 
 The library build defines `VITE_SAMPLE_DATASETS_MANIFEST_URL = 'off'` so an embed never hits the upstream sample CDN.
 
