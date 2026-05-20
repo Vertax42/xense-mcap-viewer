@@ -1,0 +1,12 @@
+{
+  "common.productName": "Xense MCAP Viewer",
+  "common.theme": "主题",
+  "common.light": "浅色",
+  "common.dark": "深色",
+  "common.system": "跟随系统",
+  "errors.loadFailed": "加载失败",
+  "errors.noRecordingsInArchive": "归档中未找到支持的录制文件",
+  "viewer.resizeSidebar": "调整侧栏宽度",
+  "viewer.remoteUrlPrompt": "输入远程录制或 TAR 的 URL（https://…）",
+  "common.dialogClose": "关闭"
+}

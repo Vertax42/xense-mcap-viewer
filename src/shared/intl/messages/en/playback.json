@@ -1,0 +1,19 @@
+{
+  "playback.annotationsEmpty": "No annotation ranges",
+  "playback.speedMax": "Max (best effort)",
+  "playback.play": "Play playback",
+  "playback.pause": "Pause playback",
+  "playback.timeMode.relative.aria": "Relative time from log start; click to switch to absolute local time",
+  "playback.timeMode.absolute.aria": "Absolute local date and time; click to switch to relative time",
+  "playback.timeMode.relative.title": "Relative time (from log start). Click to use absolute local date and time.",
+  "playback.timeMode.absolute.title": "Absolute local date and time. Click to use relative time from log start.",
+  "playback.stepBack.aria": "Step backward one message",
+  "playback.stepBack.title": "Step back one message (hold Alt: step by time, default 10 ms; Alt+Ctrl/Cmd: 100 ms)",
+  "playback.stepForward.aria": "Step forward one message",
+  "playback.stepForward.title": "Step forward one message (hold Alt: step by time)",
+  "playback.speed.aria": "Playback speed",
+  "playback.samplingFps.aria": "Sampling FPS",
+  "playback.loop.aria": "Playback loop mode",
+  "playback.loop.loop": "Loop",
+  "playback.loop.once": "Once"
+}

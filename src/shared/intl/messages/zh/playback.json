@@ -1,0 +1,19 @@
+{
+  "playback.annotationsEmpty": "暂无标注区间",
+  "playback.speedMax": "最大（尽力加速）",
+  "playback.play": "播放",
+  "playback.pause": "暂停",
+  "playback.timeMode.relative.aria": "当前为相对时间，点击切换为绝对时间",
+  "playback.timeMode.absolute.aria": "当前为绝对时间，点击切换为相对时间",
+  "playback.timeMode.relative.title": "相对时间（距日志起点）。点击切换为绝对时间（本地日期时间）",
+  "playback.timeMode.absolute.title": "绝对时间（本地日期时间）。点击切换为相对时间（距日志起点）",
+  "playback.stepBack.aria": "按消息后退一条",
+  "playback.stepBack.title": "按消息后退一条（按住 Alt：按时间步进，默认 10ms；Alt+Ctrl/Cmd 为 100ms）",
+  "playback.stepForward.aria": "按消息前进一条",
+  "playback.stepForward.title": "按消息前进一条（按住 Alt：按时间步进）",
+  "playback.speed.aria": "播放速度",
+  "playback.samplingFps.aria": "采样帧率",
+  "playback.loop.aria": "循环播放模式",
+  "playback.loop.loop": "循环",
+  "playback.loop.once": "单次"
+}

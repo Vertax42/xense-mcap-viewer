@@ -1,0 +1,12 @@
+{
+  "common.productName": "Xense MCAP Viewer",
+  "common.theme": "Theme",
+  "common.light": "Light",
+  "common.dark": "Dark",
+  "common.system": "System",
+  "errors.loadFailed": "Failed to load",
+  "errors.noRecordingsInArchive": "No supported recordings found in archive",
+  "viewer.resizeSidebar": "Resize sidebar",
+  "viewer.remoteUrlPrompt": "Enter remote recording or TAR URL (https://…)",
+  "common.dialogClose": "Close"
+}
