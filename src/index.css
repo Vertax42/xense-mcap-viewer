@@ -1,0 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Scope tokens to embed root (align with LeRobot / shadcn scoped apps) */
+  #xense-mcap-viewer-root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.625rem;
+    --sidebar: 0 0% 98%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 222.2 47.4% 11.2%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96.1%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 222.2 84% 4.9%;
+    --chart-1: 221 83% 53%;
+    --chart-2: 173 80% 40%;
+    --chart-3: 230 76% 48%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 25 95% 53%;
+    --annotation-accent: 207 81% 46%;
+    --annotation-row-active-bg: 210 40% 98%;
+    --annotation-row-selected-bg: 210 40% 94%;
+    --annotation-danger: 0 72% 50%;
+    --annotation-warning: 36 95% 48%;
+    --annotation-success: 142 72% 32%;
+  }
+
+  #xense-mcap-viewer-root.dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --radius: 0.625rem;
+    --sidebar: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 212.7 26.8% 83.9%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 230 57% 58%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 25 95% 53%;
+    --annotation-accent: 207 81% 64%;
+    --annotation-row-active-bg: 217.2 32.6% 20%;
+    --annotation-row-selected-bg: 217.2 32.6% 24%;
+    --annotation-danger: 0 72% 62%;
+    --annotation-warning: 38 92% 58%;
+    --annotation-success: 142 69% 45%;
+  }
+}
+
+@layer base {
+  #xense-mcap-viewer-root * {
+    @apply border-border;
+  }
+  #xense-mcap-viewer-root {
+    @apply bg-background text-foreground;
+  }
+  #xense-mcap-viewer-root p,
+  #xense-mcap-viewer-root [data-readability] {
+    line-height: 1.5;
+  }
+}
+
+@layer utilities {
+  #xense-mcap-viewer-root .max-w-readable {
+    max-width: 80ch;
+  }
+}
+
+@layer components {
+  #xense-mcap-viewer-root .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid hsl(var(--muted));
+    border-top-color: hsl(var(--primary));
+    border-radius: 50%;
+    animation: ros-spin 0.8s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes ros-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  #xense-mcap-viewer-root .annotation-marker-form {
+    --annotation-cell-font-size: 13px;
+    --annotation-cell-sub-font-size: 11px;
+  }
+
+  #xense-mcap-viewer-root .annotation-marker-form .annotation-field-shell + .annotation-field-shell {
+    border-top: 1px solid hsl(var(--border));
+    padding-top: 12px;
+  }
+
+  #xense-mcap-viewer-root .annotation-marker-form [data-slot='select-trigger'] {
+    border-color: #c4c4c4;
+    border-radius: 0;
+    background-color: hsl(var(--background));
+    box-shadow: none;
+  }
+}
+
+#xense-mcap-viewer-root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Raw messages object viewer: align palette with shadcn tokens */
+#xense-mcap-viewer-root .raw-messages-objview {
+  --bigobjview-fontsize: 10px;
+  --bigobjview-color: hsl(var(--foreground));
+  --bigobjview-bg-color: hsl(var(--background));
+  --bigobjview-change-color: hsl(var(--destructive));
+  --bigobjview-type-boolean-color: hsl(217 91% 55%);
+  --bigobjview-type-number-color: hsl(0 72% 51%);
+  --bigobjview-type-bigint-color: hsl(0 72% 51%);
+  --bigobjview-type-string-color: hsl(25 95% 40%);
+  --bigobjview-type-object-array-color: hsl(173 58% 39%);
+  --bigobjview-type-object-object-color: hsl(173 58% 39%);
+  --bigobjview-type-object-promise-color: hsl(173 58% 39%);
+  --bigobjview-type-object-map-color: hsl(173 58% 39%);
+  --bigobjview-type-object-set-color: hsl(173 58% 39%);
+  --bigobjview-type-function-color: hsl(217 91% 55%);
+  --bigobjview-type-object-regexp-color: hsl(0 72% 51%);
+  --bigobjview-type-object-date-color: hsl(217 91% 55%);
+  --bigobjview-type-object-error-color: hsl(var(--destructive));
+  --bigobjview-action-btn: hsl(var(--muted));
+  --bigobjview-action-success: hsl(142 76% 36%);
+  --bigobjview-action-error: hsl(var(--destructive));
+}
+
+#xense-mcap-viewer-root.dark .raw-messages-objview {
+  --bigobjview-type-string-color: hsl(38 92% 50%);
+}
+
+/*
+ * Xense MCAP Viewer Dockview chrome (tab strip + group header).
+ * Layered on Dockview built-in `dockview-theme-light|dark` via `xenseDockviewTheme` className.
+ */
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light {
+  --dv-tabs-and-actions-container-height: 35px;
+  --dv-tabs-and-actions-container-font-size: 13px;
+  --dv-group-view-background-color: #fafafa;
+  --dv-background-color: #fafafa;
+  --dv-tabs-and-actions-container-background-color: #e8e8e8;
+  --dv-activegroup-visiblepanel-tab-background-color: #ffffff;
+  --dv-activegroup-hiddenpanel-tab-background-color: #ececec;
+  --dv-inactivegroup-visiblepanel-tab-background-color: #f0f0f0;
+  --dv-inactivegroup-hiddenpanel-tab-background-color: #e6e6e6;
+  --dv-tab-divider-color: #ffffff;
+  --dv-activegroup-visiblepanel-tab-color: #1a1a1a;
+  --dv-activegroup-hiddenpanel-tab-color: rgba(26, 26, 26, 0.72);
+  --dv-inactivegroup-visiblepanel-tab-color: rgba(26, 26, 26, 0.62);
+  --dv-inactivegroup-hiddenpanel-tab-color: rgba(26, 26, 26, 0.42);
+  --dv-separator-border: rgba(0, 0, 0, 0.12);
+  --dv-paneview-header-border-color: rgba(0, 0, 0, 0.16);
+  --dv-icon-hover-background-color: rgba(0, 0, 0, 0.07);
+  --dv-drag-over-background-color: rgba(33, 150, 243, 0.18);
+  --dv-drag-over-border-color: rgba(33, 150, 243, 0.65);
+}
+
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark {
+  --dv-tabs-and-actions-container-height: 35px;
+  --dv-tabs-and-actions-container-font-size: 13px;
+  --dv-group-view-background-color: #1e1e1e;
+  --dv-background-color: #1e1e1e;
+  --dv-tabs-and-actions-container-background-color: #252526;
+  --dv-activegroup-visiblepanel-tab-background-color: #1e1e1e;
+  --dv-activegroup-hiddenpanel-tab-background-color: #2d2d2d;
+  --dv-inactivegroup-visiblepanel-tab-background-color: #252526;
+  --dv-inactivegroup-hiddenpanel-tab-background-color: #2d2d2d;
+  --dv-tab-divider-color: #1e1e1e;
+  --dv-activegroup-visiblepanel-tab-color: #ffffff;
+  --dv-activegroup-hiddenpanel-tab-color: rgba(255, 255, 255, 0.68);
+  --dv-inactivegroup-visiblepanel-tab-color: rgba(255, 255, 255, 0.55);
+  --dv-inactivegroup-hiddenpanel-tab-color: rgba(255, 255, 255, 0.38);
+  --dv-separator-border: rgba(255, 255, 255, 0.12);
+  --dv-paneview-header-border-color: rgba(255, 255, 255, 0.14);
+  --dv-icon-hover-background-color: rgba(255, 255, 255, 0.1);
+  --dv-drag-over-background-color: rgba(33, 150, 243, 0.25);
+  --dv-drag-over-border-color: rgba(33, 150, 243, 0.7);
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-groupview > .dv-tabs-and-actions-container,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-groupview > .dv-tabs-and-actions-container {
+  border-bottom: 1px solid var(--dv-separator-border);
+}
+
+/* singleTabMode fullwidth: tab stretches to fill the header.
+   Do not strip padding/border/background — those affect drag ghost visibility. */
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-groupview > .dv-tabs-and-actions-container .dv-tabs-container > .dv-tab,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-groupview > .dv-tabs-and-actions-container .dv-tabs-container > .dv-tab {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-groupview > .dv-tabs-and-actions-container .xense-dockview-tab-row,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-groupview > .dv-tabs-and-actions-container .xense-dockview-tab-row {
+  width: 100%;
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .xense-dockview-tab-row,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .xense-dockview-tab-row {
+  color: inherit;
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .ros-dockview-tab-action,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .ros-dockview-tab-action,
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light button.ros-dockview-header-action,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark button.ros-dockview-header-action {
+  color: inherit;
+  background-color: transparent;
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .ros-dockview-tab-action:hover,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .ros-dockview-tab-action:hover,
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light button.ros-dockview-header-action:hover,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark button.ros-dockview-header-action:hover {
+  background-color: var(--dv-icon-hover-background-color);
+  color: inherit;
+}
+
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-right-actions-container,
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-left-actions-container,
+#xense-mcap-viewer-root .dockview-theme-light.xense-dockview-theme-light .dv-pre-actions-container,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-right-actions-container,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-left-actions-container,
+#xense-mcap-viewer-root .dockview-theme-dark.xense-dockview-theme-dark .dv-pre-actions-container {
+  color: var(--dv-activegroup-visiblepanel-tab-color);
+}
+
+#xense-mcap-viewer-root .dv-tabs-and-actions-container,
+#xense-mcap-viewer-root .dv-content-part {
+  contain: layout style;
+}
+
+@container sidebar (max-width: 320px) {
+  #xense-mcap-viewer-root .topic-row-count-extra {
+    display: none;
+  }
+}
