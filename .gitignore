@@ -39,3 +39,6 @@ yarn.lock
 /test-results/
 /playwright-report/
 
+
+# Local test data symlinks (do not commit)
+public/episode_*.mcap
