@@ -111,7 +111,7 @@ export function ImagePanelSettings({
               value={config.topic}
               onChange={(topic) => setConfig({ ...config, topic })}
               topics={topics}
-              typeIncludes={['image', 'CompressedImage']}
+              typeIncludes={['image', 'CompressedImage', 'CompressedVideo']}
               placeholder={formatMessage({ id: 'panels.image.settings.field.topic.placeholder' })}
             />
           </SettingsField>

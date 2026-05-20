@@ -303,7 +303,7 @@ export const ImagePanel: React.FC<ImagePanelProps> = (props) => {
         <TopicQuickPicker
           value={topic}
           onChange={(nextTopic) => setConfig((prev) => ({ ...prev, topic: nextTopic }))}
-          typeIncludes={['image', 'CompressedImage']}
+          typeIncludes={['image', 'CompressedImage', 'CompressedVideo']}
           placeholder={formatMessage({ id: 'panels.framework.topicPicker.imagePlaceholder' })}
           className="min-w-0 flex-1"
           triggerClassName="border-zinc-700 bg-zinc-950 text-zinc-100 hover:bg-zinc-900 hover:text-zinc-50"
