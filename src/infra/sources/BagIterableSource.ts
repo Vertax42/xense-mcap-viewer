@@ -65,7 +65,7 @@ export class BagIterableSource implements IIterableSource {
     this._bag = new Bag(fileLike as ConstructorParameters<typeof Bag>[0], {
       parse: false,
       decompress: {
-        // xense-mcap-viewer currently supports lz4-compressed ROS1 bag chunks.
+        // `@xense-robotics/mcap-viewer` currently supports lz4-compressed ROS1 bag chunks.
         // bz2-compressed chunks are intentionally not handled in the browser pipeline.
         lz4: (buffer: Uint8Array, size: number) => {
           return decompressHandlers.lz4(buffer, BigInt(size));

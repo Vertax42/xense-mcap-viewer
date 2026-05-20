@@ -25,7 +25,7 @@ Xense MCAP Viewer is a **browser-native** playback and visualization tool for ro
 | Form | Description |
 |------|-------------|
 | **Standalone SPA** | Built as a pure static site (no server required). Deploy to any CDN or static host. Live demo: [local dev server](http://localhost:5173) |
-| **Embeddable component** | Published to npm as `xense-mcap-viewer`. Consumed as a React component in any web application. |
+| **Embeddable component** | Published to npm as `@xense-robotics/mcap-viewer`. Consumed as a React component in any web application. |
 
 ### 1.3 Performance Targets
 
@@ -702,7 +702,7 @@ export default defineConfig({
 
 ```json
 {
-  "name": "xense-mcap-viewer",
+  "name": "@xense-robotics/mcap-viewer",
   "version": "0.0.1",
   "main":   "./dist-lib/xense-mcap-viewer.es.js",
   "module": "./dist-lib/xense-mcap-viewer.es.js",
@@ -724,8 +724,8 @@ export default defineConfig({
 ### 7.4 Embedding Example
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import 'xense-mcap-viewer/style.css';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import '@xense-robotics/mcap-viewer/style.css';
 
 function MyPage() {
   return (

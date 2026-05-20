@@ -63,7 +63,7 @@ export interface McapViewerExtensionContext {
   messages: MessageAccessApi;
   /**
    * Opaque value from {@link McapViewerProps.hostContext}.
-   * xense-mcap-viewer does not interpret it; hosts pass dataset ids, feature flags, etc.
+   * `@xense-robotics/mcap-viewer` does not interpret it; hosts pass dataset ids, feature flags, etc.
    */
   hostContext?: unknown;
   dataset?: DatasetItem;

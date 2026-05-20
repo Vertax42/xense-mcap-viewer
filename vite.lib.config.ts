@@ -1,5 +1,5 @@
 /**
- * Library build for `xense-mcap-viewer`.
+ * Library build for `@xense-robotics/mcap-viewer`.
  *
  * Vite 8 production builds are Rolldown-backed; `build.rollupOptions` remains the supported config
  * surface (compat layer). See the [Vite config reference](https://vite.dev/config/).

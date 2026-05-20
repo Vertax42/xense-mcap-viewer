@@ -45,7 +45,7 @@ Go to **Actions** tab on GitHub and watch the `Release` workflow:
 | Job | What it does |
 |-----|-------------|
 | `validate` | Runs lint, unit tests, full SPA build, and library build |
-| `publish-npm` | Publishes `xense-mcap-viewer` to npm (requires `NPM_TOKEN`) |
+| `publish-npm` | Publishes `@xense-robotics/mcap-viewer` to npm (requires `NPM_TOKEN`) |
 | `github-release` | Creates a GitHub Release with GitHub auto-generated release notes |
 
 If any job fails, fix the issue and re-push the tag:

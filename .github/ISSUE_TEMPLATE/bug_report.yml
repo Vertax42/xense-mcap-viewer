@@ -36,7 +36,7 @@ body:
     id: version
     attributes:
       label: Package version
-      description: What version of xense-mcap-viewer are you using? (run `npm list xense-mcap-viewer`)
+      description: What version of xense-mcap-viewer are you using? (run `npm list @xense-robotics/mcap-viewer`)
       placeholder: "1.0.0"
     validations:
       required: true

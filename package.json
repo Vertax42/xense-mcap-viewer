@@ -1,5 +1,5 @@
 {
-  "name": "xense-mcap-viewer",
+  "name": "@xense-robotics/mcap-viewer",
   "version": "0.0.1",
   "description": "XenseRobotics MCAP & robotics data visualizer — embeddable React component and standalone SPA for MCAP, ROS bag, ROS 2 db3, HDF5, and BVH",
   "keywords": [

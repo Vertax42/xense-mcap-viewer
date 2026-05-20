@@ -17,7 +17,7 @@
 | 形态 | 说明 |
 |------|------|
 | **独立产品** | 构建为纯静态网站（SPA），可部署在官网或 CDN，用户无需安装即可使用 |
-| **嵌入式组件** | 作为 `xense-mcap-viewer` npm 包引入 `app/` 主应用，以 React 组件方式加载 |
+| **嵌入式组件** | 作为 `@xense-robotics/mcap-viewer` npm 包引入 `app/` 主应用，以 React 组件方式加载 |
 
 ### 1.3 性能目标
 
@@ -730,7 +730,7 @@ export default defineConfig({
 
 ```json
 {
-  "name": "xense-mcap-viewer",
+  "name": "@xense-robotics/mcap-viewer",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist-lib/xense-mcap-viewer.es.js",
@@ -764,8 +764,8 @@ export default defineConfig({
 
 ```tsx
 // 在 app/ 主应用中使用（公开 API 以 src/entrypoints/index.ts 为准）
-import { McapViewer } from 'xense-mcap-viewer';
-import 'xense-mcap-viewer/style.css';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import '@xense-robotics/mcap-viewer/style.css';
 
 function MyPage() {
   return (
@@ -779,8 +779,8 @@ function MyPage() {
 }
 
 // 或自行组合 UI，仅接入主题 / 国际化上下文
-import { McapViewerProvider } from 'xense-mcap-viewer';
-import 'xense-mcap-viewer/style.css';
+import { McapViewerProvider } from '@xense-robotics/mcap-viewer';
+import '@xense-robotics/mcap-viewer/style.css';
 
 function CustomPage() {
   return (

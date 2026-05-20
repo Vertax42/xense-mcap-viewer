@@ -73,7 +73,7 @@ http://localhost:5173/?url=https://your-server.com/recording.mcap&theme=dark&lan
 ### 安装
 
 ```bash
-npm install xense-mcap-viewer
+npm install @xense-robotics/mcap-viewer
 ```
 
 > **Peer dependencies**：你的项目需已安装 React ≥ 19、react-dom ≥ 19、three、@react-three/fiber、@react-three/drei。
@@ -81,13 +81,13 @@ npm install xense-mcap-viewer
 ### 引入样式
 
 ```tsx
-import 'xense-mcap-viewer/style.css';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ### 基础用法
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function MyApp() {
   return (
@@ -103,7 +103,7 @@ export function MyApp() {
 ### 加载本地文件
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function FileLoader() {
   const [file, setFile] = React.useState<File>();

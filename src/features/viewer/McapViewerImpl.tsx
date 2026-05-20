@@ -246,7 +246,7 @@ export interface McapViewerProps {
   urlState?: 'spa' | 'off';
   /**
    * Opaque host payload forwarded to every `McapViewerExtension` as `context.hostContext`.
-   * xense-mcap-viewer does not read or validate this object.
+   * `@xense-robotics/mcap-viewer` does not read or validate this object.
    */
   hostContext?: unknown;
 }

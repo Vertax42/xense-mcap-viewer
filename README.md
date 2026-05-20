@@ -72,7 +72,7 @@ Remote manifests and multiple URLs are supported via the `fileManifest` / `urls`
 ### Installation
 
 ```bash
-npm install xense-mcap-viewer
+npm install @xense-robotics/mcap-viewer
 ```
 
 > **Peer dependencies**: React ≥ 19, react-dom ≥ 19, three, @react-three/fiber, and @react-three/drei must already be installed in your project.
@@ -80,13 +80,13 @@ npm install xense-mcap-viewer
 ### Import the stylesheet
 
 ```tsx
-import 'xense-mcap-viewer/style.css';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ### Basic usage
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function MyApp() {
   return (
@@ -102,7 +102,7 @@ export function MyApp() {
 ### Load local files
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function FileLoader() {
   const [file, setFile] = React.useState<File>();

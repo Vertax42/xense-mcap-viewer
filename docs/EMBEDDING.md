@@ -17,7 +17,7 @@ This guide walks through integrating Xense MCAP Viewer as an embeddable React co
 ## Installation
 
 ```bash
-npm install xense-mcap-viewer
+npm install @xense-robotics/mcap-viewer
 ```
 
 ---
@@ -28,7 +28,7 @@ The component requires its bundled CSS. Import it once at your application root:
 
 ```tsx
 // main.tsx or App.tsx (top-level entry point)
-import 'xense-mcap-viewer/style.css';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ---
@@ -36,7 +36,7 @@ import 'xense-mcap-viewer/style.css';
 ## Step 2 — Basic usage
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export default function App() {
   return (
@@ -61,7 +61,7 @@ By default `urlState` is `'off'`: the viewer does **not** call `history.pushStat
 
 ```tsx
 import React from 'react';
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function FileViewer() {
   const [file, setFile] = React.useState<File>();
@@ -123,7 +123,7 @@ Then pass the manifest URL:
 Or pass the parsed rows directly (if you already fetched and filtered them):
 
 ```tsx
-import { parseRemoteDatasetListJson } from 'xense-mcap-viewer';
+import { parseRemoteDatasetListJson } from '@xense-robotics/mcap-viewer';
 
 const res = await fetch('/api/datasets');
 const rows = parseRemoteDatasetListJson(await res.json());
@@ -138,8 +138,8 @@ const rows = parseRemoteDatasetListJson(await res.json());
 Disable internal localStorage persistence and fully control state from your application:
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import { readPreferences, writePreferences } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import { readPreferences, writePreferences } from '@xense-robotics/mcap-viewer';
 
 function ControlledViewer() {
   const saved = readPreferences();
@@ -171,7 +171,7 @@ function ControlledViewer() {
 If your team uses Foxglove Studio layouts, you can import them directly:
 
 ```tsx
-import { importFoxgloveLayout } from 'xense-mcap-viewer';
+import { importFoxgloveLayout } from '@xense-robotics/mcap-viewer';
 
 // layout is the JSON object from a .json Foxglove layout file
 const result = importFoxgloveLayout(layout);
@@ -187,7 +187,7 @@ if (result.success) {
 ## Advanced: Custom annotation workflow
 
 ```tsx
-import { McapViewer, useAnnotationController } from 'xense-mcap-viewer';
+import { McapViewer, useAnnotationController } from '@xense-robotics/mcap-viewer';
 
 function AnnotationApp() {
   const controller = useAnnotationController({
@@ -292,14 +292,14 @@ import type {
   McapViewerProps,
   FileListItem,
   PreferencePersistence,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 ---
 
 ## Host extensions and business logic
 
-xense-mcap-viewer ships **no** product-specific annotation, QC rules, or persistence. Host applications should:
+`@xense-robotics/mcap-viewer` ships **no** product-specific annotation, QC rules, or persistence. Host applications should:
 
 1. Pass opaque `hostContext` on `McapViewer` (for example `{ datasetId, canAnnotate }`) and read `context.hostContext` inside `extensions`.
 2. Implement sidebar tabs and `playbackOverlays` / `timelineOverlays` using `context.playback`, `context.timeline`, and optionally `context.messages.getMessagesInTimeRange`.

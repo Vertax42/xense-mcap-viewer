@@ -27,8 +27,8 @@ Before using this package, install peer dependencies in your host app: `react`, 
 The main embeddable component. Renders the full viewer UI including navbar, panels, and playback controls.
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import 'xense-mcap-viewer/style.css';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ### Props
@@ -69,7 +69,7 @@ All source props may be combined. Duplicates are deduplicated automatically. Fil
 | `onThemeChange` | `(theme: 'light' \| 'dark' \| 'system') => void` | Called when the user changes the theme via the navbar. |
 | `onLanguageChange` | `(language: 'en' \| 'zh' \| 'ja') => void` | Called when the user changes the language via the navbar. |
 | `extensions` | `McapViewerExtension[]` | Optional host contributions: sidebar tabs plus timeline/playback overlays. |
-| `hostContext` | `unknown` | Opaque value forwarded to every extension as `context.hostContext`. xense-mcap-viewer does not interpret it (pass dataset ids, feature flags, etc.). |
+| `hostContext` | `unknown` | Opaque value forwarded to every extension as `context.hostContext`. `@xense-robotics/mcap-viewer` does not interpret it (pass dataset ids, feature flags, etc.). |
 
 ### Minimal example
 
@@ -100,7 +100,7 @@ const [lang, setLang] = React.useState<'en' | 'zh' | 'ja'>('en');
 Provides the theme context and i18n `IntlProvider` for applications that need to render custom UI within the Xense MCAP Viewer theme.
 
 ```tsx
-import { McapViewerProvider, useMcapViewerTheme } from 'xense-mcap-viewer';
+import { McapViewerProvider, useMcapViewerTheme } from '@xense-robotics/mcap-viewer';
 ```
 
 ### McapViewerProviderProps
@@ -216,8 +216,8 @@ type PlayerPresence = 'preinit' | 'initializing' | 'ready' | 'closed';
 For host applications that manage preferences externally (`preferencePersistence="off"`).
 
 ```ts
-import { readPreferences, writePreferences } from 'xense-mcap-viewer';
-import { MCAP_VIEWER_PREFERENCES_STORAGE_KEY, MCAP_VIEWER_LAYOUT_STORAGE_KEY } from 'xense-mcap-viewer';
+import { readPreferences, writePreferences } from '@xense-robotics/mcap-viewer';
+import { MCAP_VIEWER_PREFERENCES_STORAGE_KEY, MCAP_VIEWER_LAYOUT_STORAGE_KEY } from '@xense-robotics/mcap-viewer';
 ```
 
 ### readPreferences()
@@ -249,7 +249,7 @@ writePreferences({ theme: 'dark', language: 'en' });
 ## Dataset Utilities
 
 ```ts
-import { parseRemoteDatasetListJson, datasetItemsFromListItems } from 'xense-mcap-viewer';
+import { parseRemoteDatasetListJson, datasetItemsFromListItems } from '@xense-robotics/mcap-viewer';
 ```
 
 ### parseRemoteDatasetListJson(json)
@@ -281,7 +281,7 @@ import {
   readSavedDockviewLayout,
   saveDockviewLayoutToStorage,
   clearSavedDockviewLayout,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 | Function | Description |
@@ -293,8 +293,8 @@ import {
 ### Foxglove layout interop
 
 ```ts
-import { importFoxgloveLayout, buildFoxgloveLayout, parseFoxgloveLayout } from 'xense-mcap-viewer';
-import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from 'xense-mcap-viewer';
+import { importFoxgloveLayout, buildFoxgloveLayout, parseFoxgloveLayout } from '@xense-robotics/mcap-viewer';
+import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from '@xense-robotics/mcap-viewer';
 ```
 
 | Function | Description |
@@ -310,7 +310,7 @@ import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from 'x
 
 ## Extension API
 
-`xense-mcap-viewer` can be extended by passing `extensions` to `McapViewer`.
+`@xense-robotics/mcap-viewer` can be extended by passing `extensions` to `McapViewer`.
 
 ```ts
 import type {
@@ -323,7 +323,7 @@ import type {
   PlaybackSnapshot,
   TimelineApi,
   MessageAccessApi,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 ### Core types
@@ -343,8 +343,8 @@ import type {
 ### Example
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import type { McapViewerExtension } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import type { McapViewerExtension } from '@xense-robotics/mcap-viewer';
 
 const annotationExtension: McapViewerExtension = {
   id: 'my-annotation-tool',
@@ -402,7 +402,7 @@ const annotationExtension: McapViewerExtension = {
 For advanced use cases — subscribing to playback state and decoded messages from within custom React components rendered inside the viewer.
 
 ```ts
-import { useMessagePipeline } from 'xense-mcap-viewer';
+import { useMessagePipeline } from '@xense-robotics/mcap-viewer';
 ```
 
 ```tsx
@@ -439,7 +439,7 @@ When using the standalone SPA at [local dev server](http://localhost:5173) or a 
 
 `file://`, `folder://`, and `sample://` are **app-specific** locators, not the browser’s native `file:` URL scheme.
 
-For multiple remote files or a remote JSON manifest, use the React `urls` / `fileManifest` props when embedding `xense-mcap-viewer`; the standalone SPA intentionally tracks a single `url` in the query string.
+For multiple remote files or a remote JSON manifest, use the React `urls` / `fileManifest` props when embedding `@xense-robotics/mcap-viewer`; the standalone SPA intentionally tracks a single `url` in the query string.
 
 Example deep-link:
 ```

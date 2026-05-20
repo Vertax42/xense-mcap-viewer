@@ -17,7 +17,7 @@
 ## 安装
 
 ```bash
-npm install xense-mcap-viewer
+npm install @xense-robotics/mcap-viewer
 ```
 
 ---
@@ -28,7 +28,7 @@ npm install xense-mcap-viewer
 
 ```tsx
 // main.tsx 或 App.tsx（顶层入口）
-import 'xense-mcap-viewer/style.css';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ---
@@ -36,7 +36,7 @@ import 'xense-mcap-viewer/style.css';
 ## 步骤 2 — 基本用法
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export default function App() {
   return (
@@ -61,7 +61,7 @@ export default function App() {
 
 ```tsx
 import React from 'react';
-import { McapViewer } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
 
 export function FileViewer() {
   const [file, setFile] = React.useState<File>();
@@ -123,7 +123,7 @@ export function FileViewer() {
 若你已在应用侧拉取并过滤好数据，可直接传入解析后的行数组：
 
 ```tsx
-import { parseRemoteDatasetListJson } from 'xense-mcap-viewer';
+import { parseRemoteDatasetListJson } from '@xense-robotics/mcap-viewer';
 
 const res = await fetch('/api/datasets');
 const rows = parseRemoteDatasetListJson(await res.json());
@@ -138,8 +138,8 @@ const rows = parseRemoteDatasetListJson(await res.json());
 关闭组件内部的 localStorage 持久化，由宿主应用完全控制状态：
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import { readPreferences, writePreferences } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import { readPreferences, writePreferences } from '@xense-robotics/mcap-viewer';
 
 function ControlledViewer() {
   const saved = readPreferences();
@@ -171,7 +171,7 @@ function ControlledViewer() {
 若团队使用 Foxglove Studio 布局，可直接导入：
 
 ```tsx
-import { importFoxgloveLayout } from 'xense-mcap-viewer';
+import { importFoxgloveLayout } from '@xense-robotics/mcap-viewer';
 
 // layout 为 Foxglove 布局 .json 文件解析得到的对象
 const result = importFoxgloveLayout(layout);
@@ -187,7 +187,7 @@ if (result.success) {
 ## 进阶：自定义标注流程
 
 ```tsx
-import { McapViewer, useAnnotationController } from 'xense-mcap-viewer';
+import { McapViewer, useAnnotationController } from '@xense-robotics/mcap-viewer';
 
 function AnnotationApp() {
   const controller = useAnnotationController({
@@ -292,14 +292,14 @@ import type {
   McapViewerProps,
   FileListItem,
   PreferencePersistence,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 ---
 
 ## 宿主扩展与业务逻辑
 
-xense-mcap-viewer **不包含**具体业务的标注、质检规则或持久化。宿主应用应：
+`@xense-robotics/mcap-viewer` **不包含**具体业务的标注、质检规则或持久化。宿主应用应：
 
 1. 在 `McapViewer` 上传入不透明 `hostContext`（例如 `{ datasetId, canAnnotate }`），在扩展里通过 `context.hostContext` 读取。
 2. 使用 `extensions` 实现侧边栏与 `playbackOverlays` / `timelineOverlays`，并结合 `context.playback`、`context.timeline`、`context.messages`。

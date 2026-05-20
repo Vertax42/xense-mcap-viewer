@@ -27,8 +27,8 @@
 主嵌入组件，渲染完整查看器 UI（导航栏、面板、播放控制）。
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import 'xense-mcap-viewer/style.css';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import '@xense-robotics/mcap-viewer/style.css';
 ```
 
 ### Props
@@ -100,7 +100,7 @@ const [lang, setLang] = React.useState<'en' | 'zh' | 'ja'>('en');
 为主题上下文与 i18n 的 `IntlProvider` 提供封装，便于在 Xense MCAP Viewer 主题下渲染自定义 UI。
 
 ```tsx
-import { McapViewerProvider, useMcapViewerTheme } from 'xense-mcap-viewer';
+import { McapViewerProvider, useMcapViewerTheme } from '@xense-robotics/mcap-viewer';
 ```
 
 ### McapViewerProviderProps
@@ -216,8 +216,8 @@ type PlayerPresence = 'preinit' | 'initializing' | 'ready' | 'closed';
 用于在宿主侧管理偏好（`preferencePersistence="off"` 时）。
 
 ```ts
-import { readPreferences, writePreferences } from 'xense-mcap-viewer';
-import { MCAP_VIEWER_PREFERENCES_STORAGE_KEY, MCAP_VIEWER_LAYOUT_STORAGE_KEY } from 'xense-mcap-viewer';
+import { readPreferences, writePreferences } from '@xense-robotics/mcap-viewer';
+import { MCAP_VIEWER_PREFERENCES_STORAGE_KEY, MCAP_VIEWER_LAYOUT_STORAGE_KEY } from '@xense-robotics/mcap-viewer';
 ```
 
 ### readPreferences()
@@ -249,7 +249,7 @@ writePreferences({ theme: 'dark', language: 'en' });
 ## 数据集工具
 
 ```ts
-import { parseRemoteDatasetListJson, datasetItemsFromListItems } from 'xense-mcap-viewer';
+import { parseRemoteDatasetListJson, datasetItemsFromListItems } from '@xense-robotics/mcap-viewer';
 ```
 
 ### parseRemoteDatasetListJson(json)
@@ -281,7 +281,7 @@ import {
   readSavedDockviewLayout,
   saveDockviewLayoutToStorage,
   clearSavedDockviewLayout,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 | 函数 | 说明 |
@@ -293,8 +293,8 @@ import {
 ### Foxglove 布局互操作
 
 ```ts
-import { importFoxgloveLayout, buildFoxgloveLayout, parseFoxgloveLayout } from 'xense-mcap-viewer';
-import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from 'xense-mcap-viewer';
+import { importFoxgloveLayout, buildFoxgloveLayout, parseFoxgloveLayout } from '@xense-robotics/mcap-viewer';
+import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from '@xense-robotics/mcap-viewer';
 ```
 
 | 函数 | 说明 |
@@ -310,7 +310,7 @@ import { exportDockviewLayout, importDockviewLayout, openDockviewPanel } from 'x
 
 ## 扩展 API
 
-通过向 `McapViewer` 传入 `extensions` 扩展 `xense-mcap-viewer`。
+通过向 `McapViewer` 传入 `extensions` 扩展 `@xense-robotics/mcap-viewer`。
 
 ```ts
 import type {
@@ -320,7 +320,7 @@ import type {
   PlaybackOverlayContribution,
   PlaybackControlsApi,
   PlaybackSnapshot,
-} from 'xense-mcap-viewer';
+} from '@xense-robotics/mcap-viewer';
 ```
 
 ### 核心类型
@@ -339,8 +339,8 @@ import type {
 ### 示例
 
 ```tsx
-import { McapViewer } from 'xense-mcap-viewer';
-import type { McapViewerExtension } from 'xense-mcap-viewer';
+import { McapViewer } from '@xense-robotics/mcap-viewer';
+import type { McapViewerExtension } from '@xense-robotics/mcap-viewer';
 
 const annotationExtension: McapViewerExtension = {
   id: 'my-annotation-tool',
@@ -388,7 +388,7 @@ const annotationExtension: McapViewerExtension = {
 高级用法：在查看器内嵌的自定义 React 组件中订阅播放状态与解码消息。
 
 ```ts
-import { useMessagePipeline } from 'xense-mcap-viewer';
+import { useMessagePipeline } from '@xense-robotics/mcap-viewer';
 ```
 
 ```tsx
@@ -425,7 +425,7 @@ function MyCustomPanel() {
 
 此处的 `file://` / `folder://` / `sample://` 为应用自定义定位符，**不是**浏览器原生的 `file:` URL。
 
-多远程文件或远程 JSON manifest 请在集成 `xense-mcap-viewer` 时使用 React 的 `urls` / `fileManifest` props；独立 SPA 的查询串只跟踪单个 `url`。
+多远程文件或远程 JSON manifest 请在集成 `@xense-robotics/mcap-viewer` 时使用 React 的 `urls` / `fileManifest` props；独立 SPA 的查询串只跟踪单个 `url`。
 
 示例深链：
 

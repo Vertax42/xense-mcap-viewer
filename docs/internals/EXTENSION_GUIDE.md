@@ -7,8 +7,8 @@ How to extend rosview without touching the player core. Four common extension pa
 ## 1. Embed the viewer (no source changes)
 
 ```tsx
-import { McapViewer, type McapViewerExtension } from 'xense-mcap-viewer'
-import 'xense-mcap-viewer/style.css'
+import { McapViewer, type McapViewerExtension } from '@xense-robotics/mcap-viewer'
+import '@xense-robotics/mcap-viewer/style.css'
 
 const myExt: McapViewerExtension = {
   id: 'mylab.foo',
@@ -280,7 +280,7 @@ Add to `createWorkerTransport.ts` dispatch. Update `detectTransport.ts` if your 
 For host apps that need to put preferences in a custom store (not localStorage):
 
 ```tsx
-import type { PreferencePersistence } from 'xense-mcap-viewer'
+import type { PreferencePersistence } from '@xense-robotics/mcap-viewer'
 
 const myPersistence: PreferencePersistence = {
   async read() { return await myDb.get('rosview-prefs') },
