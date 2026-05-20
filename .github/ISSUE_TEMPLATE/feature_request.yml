@@ -1,0 +1,54 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Please provide as much context as possible so we can evaluate the request.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the product does this request relate to?
+      options:
+        - File format support
+        - Visualization panel (Image / 3D / Plot / etc.)
+        - Playback controls
+        - Layout / UI
+        - Embedding / npm API
+        - Annotation system
+        - Performance
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What are you trying to accomplish? What is the current limitation or pain point?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe what you would like to see implemented.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative solutions or workarounds?
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Mockups, links to related issues, reference implementations, or any other context.

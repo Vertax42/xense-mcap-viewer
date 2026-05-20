@@ -1,0 +1,158 @@
+{
+  "name": "xense-mcap-viewer",
+  "version": "1.0.0",
+  "description": "XenseRobotics MCAP & robotics data visualizer — embeddable React component and standalone SPA for MCAP, ROS bag, ROS 2 db3, HDF5, and BVH",
+  "keywords": [
+    "ros",
+    "mcap",
+    "robotics",
+    "visualization",
+    "rosbag",
+    "ros2",
+    "hdf5",
+    "bvh",
+    "react",
+    "tacflow",
+    "xense"
+  ],
+  "homepage": "https://github.com/Vertax42/xense-mcap-viewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vertax42/xense-mcap-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vertax42/xense-mcap-viewer/issues"
+  },
+  "license": "MIT",
+  "author": "Vertax42 <yaphetys@gmail.com> (XenseRobotics)",
+  "type": "module",
+  "main": "./dist-lib/xense-mcap-viewer.es.js",
+  "module": "./dist-lib/xense-mcap-viewer.es.js",
+  "types": "./dist-lib/xense-mcap-viewer.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-lib/xense-mcap-viewer.d.ts",
+      "import": "./dist-lib/xense-mcap-viewer.es.js"
+    },
+    "./style.css": "./dist-lib/xense-mcap-viewer.css"
+  },
+  "files": [
+    "dist-lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "overrides": {
+    "@foxglove/rosmsg": "^5.0.5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:lib": "tsc -b && vite build --config vite.lib.config.ts",
+    "typecheck": "tsc -b --noEmit",
+    "prepublishOnly": "npm run lint && npm test && npm run build:lib",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" \"tests/**/*.ts\"",
+    "test": "vitest run",
+    "preview": "npm run build && vite preview",
+    "gen:e2e:fixtures": "node scripts/gen-test-mcap.mjs",
+    "pretest:e2e": "npm run gen:e2e:fixtures",
+    "test:e2e": "playwright test"
+  },
+  "peerDependencies": {
+    "@react-three/drei": "^10.0.0",
+    "@react-three/fiber": "^9.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.173.0"
+  },
+  "peerDependenciesMeta": {
+    "@react-three/drei": {
+      "optional": false
+    },
+    "@react-three/fiber": {
+      "optional": false
+    },
+    "three": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@foxglove/message-definition": "^0.5.0",
+    "@foxglove/omgidl-parser": "^1.2.2",
+    "@foxglove/omgidl-serialization": "^1.2.3",
+    "@foxglove/ros2idl-parser": "^0.3.6",
+    "@foxglove/rosbag": "^0.4.1",
+    "@foxglove/rosbag2-web": "^5.0.0",
+    "@foxglove/rosmsg": "^5.0.5",
+    "@foxglove/rosmsg-serialization": "^2.0.4",
+    "@foxglove/rosmsg2-serialization": "^3.0.3",
+    "@ioai/hdf5": "^0.1.4",
+    "@mcap/core": "^2.0.2",
+    "@playwright/test": "^1.59.1",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.5",
+    "@radix-ui/react-menubar": "^1.1.16",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-separator": "^1.1.1",
+    "@radix-ui/react-slider": "^1.2.2",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.2",
+    "@react-three/drei": "^10.0.0",
+    "@react-three/fiber": "^9.0.0",
+    "@types/cytoscape": "^3.21.9",
+    "@types/cytoscape-dagre": "^2.3.4",
+    "@types/node": "^25.6.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "^0.173.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.23",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "comlink": "^4.4.1",
+    "cytoscape": "^3.33.2",
+    "cytoscape-dagre": "^2.5.0",
+    "dockview": "^6.0.7",
+    "dockview-core": "^6.0.7",
+    "esbuild": "^0.28.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "eventemitter3": "^5.0.1",
+    "fflate": "^0.8.2",
+    "flatbuffers": "^25.9.23",
+    "fzstd": "^0.1.1",
+    "globals": "^17.4.0",
+    "intervals-fn": "^3.0.3",
+    "lucide-react": "^0.474.0",
+    "lz4js": "^0.2.0",
+    "postcss": "^8.5.6",
+    "protobufjs": "^8.0.1",
+    "react-intl": "^10.1.2",
+    "react-resizable-panels": "^4.10.0",
+    "rollup": "^4.52.5",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^3.4.17",
+    "three": "^0.173.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.58.0",
+    "uplot": "^1.6.31",
+    "vite": "^8.0.9",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.5.0",
+    "vitest": "^4.1.4",
+    "zustand": "^5.0.3"
+  }
+}

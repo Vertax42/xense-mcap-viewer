@@ -1,0 +1,78 @@
+xense-mcap-viewer
+Copyright 2026 XenseRobotics
+
+This product is licensed under the MIT License. See the LICENSE file for details.
+
+--------------------------------------------------------------------------------
+THIRD-PARTY SOFTWARE NOTICES
+--------------------------------------------------------------------------------
+
+This product depends on third-party packages. Their licenses are reproduced
+below or can be found in each package's LICENSE file under node_modules/.
+
+@foxglove/rosbag, @foxglove/rosbag2-web, @foxglove/rosmsg,
+@foxglove/rosmsg-serialization, @foxglove/rosmsg2-serialization,
+@foxglove/message-definition, @foxglove/omgidl-parser,
+@foxglove/omgidl-serialization, @foxglove/ros2idl-parser, @foxglove/sql.js
+  Copyright 2021-2024 Foxglove Technologies Inc.
+  Licensed under the MIT License.
+  https://github.com/foxglove
+
+@mcap/core
+  Copyright 2022-2024 Foxglove Technologies Inc.
+  Licensed under the MIT License.
+  https://github.com/foxglove/mcap
+
+@radix-ui/* (react-dialog, react-dropdown-menu, react-select, etc.)
+  Copyright 2022 WorkOS
+  Licensed under the MIT License.
+  https://www.radix-ui.com
+
+dockview, dockview-core
+  Copyright 2021-2024 mathuo
+  Licensed under the MIT License.
+  https://github.com/mathuo/dockview
+
+three, @react-three/fiber, @react-three/drei
+  Copyright 2010-2024 three.js authors
+  Licensed under the MIT License.
+  https://threejs.org
+
+uplot
+  Copyright 2019-2024 Leon Sorokin
+  Licensed under the MIT License.
+  https://github.com/leeoniya/uPlot
+
+zustand
+  Copyright 2019-2024 Paul Henschel (pmndrs)
+  Licensed under the MIT License.
+  https://github.com/pmndrs/zustand
+
+comlink
+  Copyright 2017 Google Inc.
+  Licensed under the Apache License 2.0.
+  https://github.com/GoogleChromeLabs/comlink
+
+react-intl
+  Copyright 2015-2024 Yahoo! Inc.
+  Licensed under the BSD 3-Clause License.
+  https://formatjs.io
+
+@ioai/hdf5
+  Copyright 2026 IO-AI Tech
+  Licensed under the MIT License; third-party notices ship with the npm package (see node_modules/@ioai/hdf5/THIRD_PARTY_NOTICES.md after install).
+  https://www.npmjs.com/package/@ioai/hdf5
+  Source: https://github.com/ioai-tech/hdf5-wasm
+
+fflate
+  Copyright 2020-2024 Arjun Barrett
+  Licensed under the MIT License.
+  https://github.com/101arrowz/fflate
+
+tailwindcss
+  Copyright 2019-2024 Tailwind Labs, Inc.
+  Licensed under the MIT License.
+  https://tailwindcss.com
+
+Other dependencies are listed in package.json. Each package's full license
+text is available in its respective node_modules directory or upstream repository.

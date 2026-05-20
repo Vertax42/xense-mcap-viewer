@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Xense MCAP Viewer — MCAP, ROS bag, ROS 2 db3, HDF5 &amp; BVH visualization in the browser
+    </title>
+    <meta
+      name="description"
+      content="Xense MCAP Viewer: open, inspect, replay, and visualize robotics data in your browser. Supports MCAP, ROS 1/2 bag, ROS 2 db3, HDF5, and BVH — built for ROS debugging and analysis."
+    />
+    <meta
+      name="keywords"
+      content="ROS,ROS 2,robotics visualization,MCAP,MCAP viewer,ROS bag,rosbag,ROS2 db3,db3 viewer,HDF5,HDF5 viewer,BVH,BVH viewer,topic visualization,web viewer,browser,TacFlow,XenseRobotics,xense-mcap-viewer"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="XenseRobotics — Xense MCAP Viewer" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Xense MCAP Viewer" />
+    <meta
+      property="og:title"
+      content="Xense MCAP Viewer — MCAP, ROS bag, ROS 2 db3, HDF5 &amp; BVH visualization in the browser"
+    />
+    <meta
+      property="og:description"
+      content="Open, inspect, replay, and visualize robotics data in your browser. Supports MCAP, ROS bag, ROS 2 db3, HDF5, and BVH for ROS debugging and analysis."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Xense MCAP Viewer — MCAP, ROS bag, ROS 2 db3, HDF5 &amp; BVH visualization in the browser"
+    />
+    <meta
+      name="twitter:description"
+      content="Visualize MCAP, ROS bag, ROS 2 db3, HDF5, and BVH in the browser. Built for ROS debugging and analysis."
+    />
+
+    <script>
+      (function () {
+        function parseUiLanguage(search) {
+          try {
+            var params = new URLSearchParams(search.startsWith('?') ? search : '?' + search);
+            var raw = (params.get('lang') || params.get('language') || '').trim();
+            if (!raw) return 'en';
+            var lower = raw.toLowerCase().replace(/_/g, '-');
+            if (lower === 'zh' || lower === 'zh-cn' || lower === 'zhcn' || lower.indexOf('zh-cn') === 0)
+              return 'zh';
+            if (lower === 'ja' || lower === 'ja-jp' || lower.indexOf('ja-') === 0) return 'ja';
+            return 'en';
+          } catch {
+            return 'en';
+          }
+        }
+
+        function htmlLang(ui) {
+          if (ui === 'zh') return 'zh-CN';
+          if (ui === 'ja') return 'ja';
+          return 'en-US';
+        }
+
+        function ogLocale(ui) {
+          if (ui === 'zh') return 'zh_CN';
+          if (ui === 'ja') return 'ja_JP';
+          return 'en_US';
+        }
+
+        var ui = parseUiLanguage(typeof location !== 'undefined' ? location.search : '');
+
+        if (typeof document !== 'undefined') {
+          document.documentElement.lang = htmlLang(ui);
+
+          var ogLoc = document.querySelector('meta[property="og:locale"]');
+          if (ogLoc) ogLoc.setAttribute('content', ogLocale(ui));
+        }
+
+        if (typeof window !== 'undefined') {
+          window.__XENSE_MCAP_VIEWER__ = {
+            uiLanguage: ui,
+          };
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/entrypoints/main.tsx"></script>
+  </body>
+</html>
