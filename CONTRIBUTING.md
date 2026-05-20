@@ -71,7 +71,7 @@ docs(api): document fileManifest prop with JSON example
 User-visible strings must go through **react-intl**. When adding UI text:
 
 1. Pick the correct shard under `src/shared/intl/messages/<locale>/` (for example `panels.json` for panel UI, `welcome.json` for the welcome screen).
-2. Add the same key to `en`, `zh`, and `ja` shards so all locales stay in sync.
+2. Add the same key to `en` and `zh` shards so all locales stay in sync.
 3. Use stable dot-separated IDs (e.g. `panels.audio.settings.field.mute`).
 4. Use ICU placeholders for dynamic values: `{count}` not string concatenation
 

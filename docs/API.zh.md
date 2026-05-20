@@ -50,7 +50,7 @@ import '@xense-robotics/mcap-viewer/style.css';
 | Prop | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
 | `theme` | `'light' \| 'dark' \| 'system'` | `'system'` | 配色主题；`'system'` 跟随系统。 |
-| `language` | `'en' \| 'zh' \| 'ja'` | `'en'` | UI 语言。 |
+| `language` | `'en' \| 'zh'` | `'en'` | UI 语言。 |
 | `className` | `string` | — | 应用到最外层容器的 CSS class。 |
 | `style` | `React.CSSProperties` | — | 应用到最外层容器的内联样式。 |
 
@@ -67,7 +67,7 @@ import '@xense-robotics/mcap-viewer/style.css';
 |------|------|------|
 | `onFatalError` | `(error: Error) => void` | 文件加载失败且无可用回退时调用。 |
 | `onThemeChange` | `(theme: 'light' \| 'dark' \| 'system') => void` | 用户通过导航栏切换主题时调用。 |
-| `onLanguageChange` | `(language: 'en' \| 'zh' \| 'ja') => void` | 用户通过导航栏切换语言时调用。 |
+| `onLanguageChange` | `(language: 'en' \| 'zh') => void` | 用户通过导航栏切换语言时调用。 |
 | `extensions` | `McapViewerExtension[]` | 可选宿主扩展：侧边栏 Tab、播放条/时间轴叠加层等。 |
 | `hostContext` | `unknown` | 不透明上下文，原样出现在 `context.hostContext`（如数据集 id、权限标记）。 |
 
@@ -81,7 +81,7 @@ import '@xense-robotics/mcap-viewer/style.css';
 
 ```tsx
 const [theme, setTheme] = React.useState<'light' | 'dark' | 'system'>('dark');
-const [lang, setLang] = React.useState<'en' | 'zh' | 'ja'>('en');
+const [lang, setLang] = React.useState<'en' | 'zh'>('en');
 
 <McapViewer
   url="https://cdn.example.com/recording.mcap"
@@ -108,7 +108,7 @@ import { McapViewerProvider, useMcapViewerTheme } from '@xense-robotics/mcap-vie
 | Prop | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
 | `theme` | `'light' \| 'dark' \| 'system'` | `'system'` | 子组件主题。 |
-| `language` | `'en' \| 'zh' \| 'ja'` | `'en'` | react-intl 消息语言。 |
+| `language` | `'en' \| 'zh'` | `'en'` | react-intl 消息语言。 |
 | `children` | `React.ReactNode` | （必填） | 子节点。 |
 
 ### useMcapViewerTheme
@@ -126,7 +126,7 @@ const { theme, resolvedTheme } = useMcapViewerTheme();
 ### McapViewerLanguageCode
 
 ```ts
-type McapViewerLanguageCode = 'en' | 'zh' | 'ja';
+type McapViewerLanguageCode = 'en' | 'zh';
 ```
 
 ### McapViewerUiTheme
@@ -421,7 +421,7 @@ function MyCustomPanel() {
 | `url` | `folder://dataset` | 本地文件夹：按文件夹名匹配 **最近打开** 中最近一条可重放的目录句柄。 |
 | `url` | `sample://franka_stack` | 内置示例：用 id 在构建时配置的 JSON 清单中解析（`VITE_SAMPLE_DATASETS_MANIFEST_URL` 或 `VITE_SAMPLES_BASE_URL`，见 `src/services/sampleDatasets.ts`）。 |
 | `theme` | `dark` | 初始主题（`light` / `dark` / `system`）。 |
-| `language` | `zh` | 初始语言（`en` / `zh` / `ja`）。 |
+| `language` | `zh` | 初始语言（`en` / `zh`）。 |
 
 此处的 `file://` / `folder://` / `sample://` 为应用自定义定位符，**不是**浏览器原生的 `file:` URL。
 

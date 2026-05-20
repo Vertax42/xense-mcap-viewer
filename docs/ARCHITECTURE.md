@@ -130,7 +130,7 @@ Fixed-width sidebar (collapsible) on the left with three tabs:
 
 ### 2.7 Internationalization
 
-- Supports **English**, **Chinese (Simplified)**, and **Japanese**
+- Supports **English** and **Chinese (Simplified)**
 - Powered by `react-intl`
 - Language settable via `?lang=` URL param or the `language` prop on `<McapViewer>`
 - Message files: `src/shared/intl/{en,zh,ja}.json`

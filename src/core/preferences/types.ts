@@ -1,4 +1,4 @@
-export type McapViewerLanguageCode = 'en' | 'zh' | 'ja';
+export type McapViewerLanguageCode = 'en' | 'zh';
 
 /** Persisted theme: light/dark only (navbar); `system` is resolved at runtime, not stored yet. */
 export type McapViewerPersistedTheme = 'light' | 'dark';

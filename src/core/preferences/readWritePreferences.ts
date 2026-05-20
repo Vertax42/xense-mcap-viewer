@@ -6,7 +6,7 @@ import {
 } from './types';
 import { MCAP_VIEWER_PREFERENCES_STORAGE_KEY } from './storageKeys';
 
-const LANGUAGE_SET = new Set<McapViewerLanguageCode>(['en', 'zh', 'ja']);
+const LANGUAGE_SET = new Set<McapViewerLanguageCode>(['en', 'zh']);
 const PERSISTED_THEME_SET = new Set<McapViewerPersistedTheme>(['light', 'dark']);
 
 function isRecord(value: unknown): value is Record<string, unknown> {

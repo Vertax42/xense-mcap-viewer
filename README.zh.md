@@ -36,7 +36,7 @@
 - **多面板布局** — 基于 DockView 的可拖拽、可停靠面板
 - **可视化面板** — 图像（H.264）、3D（点云、URDF、TF）、Plot（uPlot）、关节、地图、音频、RawMessages、TopicGraph、位姿
 - **Foxglove 布局兼容** — 导入 / 导出 Foxglove Studio 布局
-- **国际化** — English · 简体中文 · 日本語
+- **国际化** — English · 简体中文
 - **明 / 暗 / 跟随系统** 主题
 - **扩展 API** — 注册第三方侧边栏 Tab 与播放条上方叠加区域
 
@@ -174,7 +174,7 @@ export function FileLoader() {
 | `url` | `?url=file://name.mcap` | 本地文件定位（从 Recent / IndexedDB 句柄恢复） |
 | `url` | `?url=folder://MyDataset` | 本地目录定位 |
 | `theme` | `?theme=dark` | `light` · `dark` · `system` |
-| `language` | `?language=zh` | `en` · `zh` · `ja` |
+| `language` | `?language=zh` | `en` · `zh` |
 
 多 URL 与远程清单仅在嵌入时通过 `urls` / `fileManifest` **props** 支持。
 

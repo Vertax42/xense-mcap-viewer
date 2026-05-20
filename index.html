@@ -30,7 +30,6 @@
     />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="zh_CN" />
-    <meta property="og:locale:alternate" content="ja_JP" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -52,7 +51,6 @@
             var lower = raw.toLowerCase().replace(/_/g, '-');
             if (lower === 'zh' || lower === 'zh-cn' || lower === 'zhcn' || lower.indexOf('zh-cn') === 0)
               return 'zh';
-            if (lower === 'ja' || lower === 'ja-jp' || lower.indexOf('ja-') === 0) return 'ja';
             return 'en';
           } catch {
             return 'en';
@@ -61,13 +59,11 @@
 
         function htmlLang(ui) {
           if (ui === 'zh') return 'zh-CN';
-          if (ui === 'ja') return 'ja';
           return 'en-US';
         }
 
         function ogLocale(ui) {
           if (ui === 'zh') return 'zh_CN';
-          if (ui === 'ja') return 'ja_JP';
           return 'en_US';
         }
 

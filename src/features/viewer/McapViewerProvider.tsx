@@ -37,7 +37,6 @@ export function useMcapViewerTheme(): McapViewerThemeContextValue {
 
 function intlLocaleFor(lang: McapViewerLocale): string {
   if (lang === 'zh') return 'zh-CN';
-  if (lang === 'ja') return 'ja-JP';
   return 'en';
 }
 

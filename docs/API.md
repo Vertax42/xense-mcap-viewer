@@ -50,7 +50,7 @@ All source props may be combined. Duplicates are deduplicated automatically. Fil
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `theme` | `'light' \| 'dark' \| 'system'` | `'system'` | Color theme. `'system'` follows the OS preference. |
-| `language` | `'en' \| 'zh' \| 'ja'` | `'en'` | UI language (English, Simplified Chinese, Japanese). |
+| `language` | `'en' \| 'zh'` | `'en'` | UI language (English, Simplified Chinese). |
 | `className` | `string` | — | CSS class applied to the outermost container element. |
 | `style` | `React.CSSProperties` | — | Inline styles applied to the outermost container element. |
 
@@ -67,7 +67,7 @@ All source props may be combined. Duplicates are deduplicated automatically. Fil
 |------|------|-------------|
 | `onFatalError` | `(error: Error) => void` | Called when a file fails to load and no fallback succeeds. |
 | `onThemeChange` | `(theme: 'light' \| 'dark' \| 'system') => void` | Called when the user changes the theme via the navbar. |
-| `onLanguageChange` | `(language: 'en' \| 'zh' \| 'ja') => void` | Called when the user changes the language via the navbar. |
+| `onLanguageChange` | `(language: 'en' \| 'zh') => void` | Called when the user changes the language via the navbar. |
 | `extensions` | `McapViewerExtension[]` | Optional host contributions: sidebar tabs plus timeline/playback overlays. |
 | `hostContext` | `unknown` | Opaque value forwarded to every extension as `context.hostContext`. `@xense-robotics/mcap-viewer` does not interpret it (pass dataset ids, feature flags, etc.). |
 
@@ -81,7 +81,7 @@ All source props may be combined. Duplicates are deduplicated automatically. Fil
 
 ```tsx
 const [theme, setTheme] = React.useState<'light' | 'dark' | 'system'>('dark');
-const [lang, setLang] = React.useState<'en' | 'zh' | 'ja'>('en');
+const [lang, setLang] = React.useState<'en' | 'zh'>('en');
 
 <McapViewer
   url="https://cdn.example.com/recording.mcap"
@@ -108,7 +108,7 @@ import { McapViewerProvider, useMcapViewerTheme } from '@xense-robotics/mcap-vie
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `theme` | `'light' \| 'dark' \| 'system'` | `'system'` | Theme for child components. |
-| `language` | `'en' \| 'zh' \| 'ja'` | `'en'` | Language for react-intl messages. |
+| `language` | `'en' \| 'zh'` | `'en'` | Language for react-intl messages. |
 | `children` | `React.ReactNode` | (required) | Child components. |
 
 ### useMcapViewerTheme
@@ -126,7 +126,7 @@ const { theme, resolvedTheme } = useMcapViewerTheme();
 ### McapViewerLanguageCode
 
 ```ts
-type McapViewerLanguageCode = 'en' | 'zh' | 'ja';
+type McapViewerLanguageCode = 'en' | 'zh';
 ```
 
 ### McapViewerUiTheme
@@ -435,7 +435,7 @@ When using the standalone SPA at [local dev server](http://localhost:5173) or a 
 | `url` | `folder://dataset` | Local folder: replay uses the most recent **Recent** directory entry whose folder name matches. |
 | `url` | `sample://franka_stack` | Built-in sample: resolve `id` against the JSON catalog from `VITE_SAMPLE_DATASETS_MANIFEST_URL` or `VITE_SAMPLES_BASE_URL` (see sample manifest in the repo `src/services/sampleDatasets.ts`). |
 | `theme` | `dark` | Initial theme (`light` / `dark` / `system`). |
-| `language` | `zh` | Initial language (`en` / `zh` / `ja`). |
+| `language` | `zh` | Initial language (`en` / `zh`). |
 
 `file://`, `folder://`, and `sample://` are **app-specific** locators, not the browser’s native `file:` URL scheme.
 

@@ -77,9 +77,9 @@ interface NavbarProps {
   sourceName?: string;
   sourceLoading?: boolean;
   theme?: 'light' | 'dark' | 'system';
-  language?: 'en' | 'zh' | 'ja';
+  language?: 'en' | 'zh';
   onThemeChange?: (theme: 'light' | 'dark' | 'system') => void;
-  onLanguageChange?: (lang: 'en' | 'zh' | 'ja') => void;
+  onLanguageChange?: (lang: 'en' | 'zh') => void;
   showLanguageSwitcher?: boolean;
   showThemeSwitcher?: boolean;
   onBrandClick?: () => void;
@@ -378,7 +378,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {formatMessage({ id: 'navbar.selectLanguage' })}
                 </MenubarLabel>
                 <MenubarGroup>
-                  {(['en', 'zh', 'ja'] as const).map((item) => (
+                  {(['en', 'zh'] as const).map((item) => (
                     <MenubarItem
                       key={item}
                       onSelect={() => onLanguageChange?.(item)}

@@ -35,7 +35,7 @@ Supports **MCAP**, **ROS 1 bag**, **ROS 2 db3**, **HDF5**, and **BVH** files. Av
 - **HTTP Range streaming** — load remote files without downloading them in full
 - **Multi-panel layout** — draggable, dockable panels powered by DockView
 - **Visualization panels** — Image (H.264), 3D (point clouds, URDF, TF), Plot (uPlot), Joints, Map, Audio, RawMessages, TopicGraph, Pose
-- **Internationalization** — English · Simplified Chinese · Japanese
+- **Internationalization** — English · Simplified Chinese
 - **Dark / light / system** theme
 - **Extension API** — register third-party sidebar tabs and playback-track overlay regions
 
@@ -174,7 +174,7 @@ All formats are parsed entirely in the browser via Web Workers — no server-sid
 | `url` | `?url=file://name.mcap` | Local file locator (replay from Recent / IndexedDB handles) |
 | `url` | `?url=folder://MyDataset` | Local folder locator (replay from Recent directory handle) |
 | `theme` | `?theme=dark` | `light` · `dark` · `system` |
-| `language` | `?language=zh` | `en` · `zh` · `ja` |
+| `language` | `?language=zh` | `en` · `zh` |
 
 Multiple remote URLs or a remote manifest JSON URL are supported via the `urls` / `fileManifest` **props** when embedding the library, not via extra query keys in the standalone SPA.
 

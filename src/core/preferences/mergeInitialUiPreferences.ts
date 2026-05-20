@@ -18,7 +18,7 @@ export type MergeInitialUiPreferencesInput = {
 };
 
 const UI_THEME = new Set<McapViewerUiTheme>(['light', 'dark', 'system']);
-const LANG = new Set<McapViewerLanguageCode>(['en', 'zh', 'ja']);
+const LANG = new Set<McapViewerLanguageCode>(['en', 'zh']);
 
 function parseUrlTheme(raw: string | null | undefined): McapViewerUiTheme | undefined {
   if (raw == null || raw === '') return undefined;
@@ -31,7 +31,6 @@ function parseUrlLanguage(raw: string | null | undefined): McapViewerLanguageCod
   const v = raw.trim().toLowerCase().replace(/_/g, '-');
   // BCP-47 style params (e.g. ?lang=zh-CN) map to UI language codes.
   if (v === 'zh' || v === 'zh-cn' || v === 'zhcn' || v.startsWith('zh-cn')) return 'zh';
-  if (v === 'ja' || v === 'ja-jp' || v.startsWith('ja-')) return 'ja';
   if (v === 'en' || v === 'en-us' || v === 'en-gb' || v.startsWith('en-')) return 'en';
   return LANG.has(v as McapViewerLanguageCode) ? (v as McapViewerLanguageCode) : undefined;
 }

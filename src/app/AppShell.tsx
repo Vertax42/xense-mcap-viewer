@@ -20,9 +20,9 @@ interface AppShellProps {
   className?: string;
   style?: React.CSSProperties;
   theme: 'light' | 'dark' | 'system';
-  language: 'en' | 'zh' | 'ja';
+  language: 'en' | 'zh';
   onThemeChange: (theme: 'light' | 'dark' | 'system') => void;
-  onLanguageChange: (lang: 'en' | 'zh' | 'ja') => void;
+  onLanguageChange: (lang: 'en' | 'zh') => void;
   showLanguageSwitcher?: boolean;
   showThemeSwitcher?: boolean;
   onBrandClick?: () => void;

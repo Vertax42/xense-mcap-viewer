@@ -74,7 +74,7 @@ interface McapViewerContentProps {
   onReplayHistory: (id: string) => void | Promise<void>;
   onDropRosRecordingFiles: (files: File[], items?: DataTransferItemList) => void | Promise<void>;
   extensions?: McapViewerExtension[];
-  locale: 'en' | 'zh' | 'ja';
+  locale: 'en' | 'zh';
   theme: 'light' | 'dark' | 'system';
   activeDataset?: DatasetItem;
   /** Passed through to extension context as opaque `hostContext`. */

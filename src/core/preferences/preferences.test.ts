@@ -35,13 +35,13 @@ describe('mergeInitialUiPreferences', () => {
     const r = mergeInitialUiPreferences({
       persistence: 'localStorage',
       propsTheme: 'dark',
-      propsLanguage: 'ja',
+      propsLanguage: 'zh',
       urlTheme: 'light',
       urlLanguage: 'zh',
       stored: { schemaVersion: 1, theme: 'light', language: 'en' },
     });
     expect(r.theme).toBe('dark');
-    expect(r.language).toBe('ja');
+    expect(r.language).toBe('zh');
   });
 
   it('uses URL when props omit theme/language', () => {
@@ -70,7 +70,7 @@ describe('mergeInitialUiPreferences', () => {
       persistence: 'off',
       urlTheme: null,
       urlLanguage: null,
-      stored: { schemaVersion: 1, theme: 'dark', language: 'ja' },
+      stored: { schemaVersion: 1, theme: 'dark', language: 'zh' },
     });
     expect(r.theme).toBe('system');
     expect(r.language).toBe('en');
@@ -81,7 +81,7 @@ describe('mergeInitialUiPreferences', () => {
       persistence: 'off',
       urlTheme: 'light',
       urlLanguage: 'zh',
-      stored: { schemaVersion: 1, theme: 'dark', language: 'ja' },
+      stored: { schemaVersion: 1, theme: 'dark', language: 'zh' },
     });
     expect(r.theme).toBe('light');
     expect(r.language).toBe('zh');
@@ -105,9 +105,9 @@ describe('readUiPreferenceParamsFromSearch', () => {
       urlTheme: 'dark',
       urlLanguage: 'zh',
     });
-    expect(readUiPreferenceParamsFromSearch('?lang=ja')).toEqual({
+    expect(readUiPreferenceParamsFromSearch('?lang=fr')).toEqual({
       urlTheme: null,
-      urlLanguage: 'ja',
+      urlLanguage: 'fr',
     });
     expect(readUiPreferenceParamsFromSearch('?lang=zh-CN')).toEqual({
       urlTheme: null,
@@ -168,11 +168,11 @@ describe('readPreferences / writePreferences', () => {
       sidebarPanelPercent: 22,
       autoDataQualityScan: true,
     });
-    writePreferences({ language: 'ja', sidebarPanelPercent: 31, autoDataQualityScan: false });
+    writePreferences({ language: 'zh', sidebarPanelPercent: 31, autoDataQualityScan: false });
     expect(readPreferences()).toEqual({
       schemaVersion: MCAP_VIEWER_PREFERENCE_SCHEMA_VERSION,
       theme: 'dark',
-      language: 'ja',
+      language: 'zh',
       sidebarWidth: 280,
       sidebarPanelPercent: 31,
       autoDataQualityScan: false,

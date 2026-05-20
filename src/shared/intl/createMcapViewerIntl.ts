@@ -5,7 +5,6 @@ const intlCache = createIntlCache();
 
 function localeFor(lang: McapViewerLocale): string {
   if (lang === 'zh') return 'zh-CN';
-  if (lang === 'ja') return 'ja-JP';
   return 'en';
 }
 

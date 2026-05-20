@@ -206,7 +206,7 @@ export interface McapViewerProps {
   urls?: string[];
   files?: File[];
   theme?: 'light' | 'dark' | 'system';
-  language?: 'en' | 'zh' | 'ja';
+  language?: 'en' | 'zh';
   /** CSS class applied to the outermost container element. */
   className?: string;
   /** Inline styles applied to the outermost container element. */
@@ -220,7 +220,7 @@ export interface McapViewerProps {
   /** Fired when the user changes theme in the navbar (orthogonal to persistence). */
   onThemeChange?: (theme: 'light' | 'dark' | 'system') => void;
   /** Fired when the user changes language in the navbar. */
-  onLanguageChange?: (language: 'en' | 'zh' | 'ja') => void;
+  onLanguageChange?: (language: 'en' | 'zh') => void;
   /** Fired after this component rewrites SPA query state and the host should re-read `window.location.search`. */
   onSpaUrlQuerySync?: () => void;
   /**
@@ -333,7 +333,7 @@ export const McapViewer: React.FC<McapViewerProps> = (props) => {
   }, [propSig]);
 
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark' | 'system'>(() => initialUiFromProps(props).theme);
-  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'zh' | 'ja'>(() => initialUiFromProps(props).language);
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'zh'>(() => initialUiFromProps(props).language);
   const [player, setPlayer] = useState<IterablePlayer | null>(null);
   const [sampleDialogOpen, setSampleDialogOpen] = useState(false);
   const [remoteUrlBusy, setRemoteUrlBusy] = useState(false);
@@ -395,7 +395,7 @@ export const McapViewer: React.FC<McapViewerProps> = (props) => {
   );
 
   const handleLanguageChange = useCallback(
-    (language: 'en' | 'zh' | 'ja') => {
+    (language: 'en' | 'zh') => {
       setCurrentLanguage(language);
       if (persistence === 'localStorage') {
         writePreferences({ language });

@@ -27,7 +27,7 @@ test('language dropdown menu opens from icon button', async ({ page }) => {
   await page.locator('nav').getByLabel('Select language').first().click();
   await expect(page.getByRole('menuitem', { name: 'English' })).toBeVisible();
   await expect(page.getByRole('menuitem', { name: 'Simplified Chinese' })).toBeVisible();
-  await expect(page.getByRole('menuitem', { name: 'Japanese' })).toBeVisible();
+  await expect(page.getByRole('menuitem', { name: 'Simplified Chinese' })).toBeVisible();
 });
 
 test('layout menu lists import, export, save, reset', async ({ page }) => {

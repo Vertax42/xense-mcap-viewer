@@ -7,15 +7,6 @@ import enQuality from './messages/en/quality.json';
 import enSidebar from './messages/en/sidebar.json';
 import enWelcome from './messages/en/welcome.json';
 
-import jaCommon from './messages/ja/common.json';
-import jaLayout from './messages/ja/layout.json';
-import jaNavbar from './messages/ja/navbar.json';
-import jaPanels from './messages/ja/panels.json';
-import jaPlayback from './messages/ja/playback.json';
-import jaQuality from './messages/ja/quality.json';
-import jaSidebar from './messages/ja/sidebar.json';
-import jaWelcome from './messages/ja/welcome.json';
-
 import zhCommon from './messages/zh/common.json';
 import zhLayout from './messages/zh/layout.json';
 import zhNavbar from './messages/zh/navbar.json';
@@ -58,17 +49,6 @@ const ZH_SHARDS = [
   zhPanels,
 ] as const;
 
-const JA_SHARDS = [
-  jaCommon,
-  jaWelcome,
-  jaNavbar,
-  jaLayout,
-  jaSidebar,
-  jaQuality,
-  jaPlayback,
-  jaPanels,
-] as const;
-
 function mergeFlatMessages(locale: string, ...parts: readonly Record<string, string>[]): McapViewerMessages {
   const out: Record<string, string> = {};
   for (const part of parts) {
@@ -85,7 +65,6 @@ function mergeFlatMessages(locale: string, ...parts: readonly Record<string, str
 const MERGED = {
   en: mergeFlatMessages('en', ...EN_SHARDS),
   zh: mergeFlatMessages('zh', ...ZH_SHARDS),
-  ja: mergeFlatMessages('ja', ...JA_SHARDS),
 } as const;
 
 export type McapViewerLocale = keyof typeof MERGED;
