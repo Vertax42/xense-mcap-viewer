@@ -1,0 +1,298 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import * as Tabs from '@radix-ui/react-tabs';
+import { useIntl } from 'react-intl';
+import { useMessagePipeline } from '@/core/pipeline/useMessagePipeline';
+import type { MessagePipelineState } from '@/core/pipeline/store';
+import type { Player } from '@/core/types/player';
+import type { TopicInfo } from '@/core/types/ros';
+import { ScrollArea } from '@/shared/ui/scroll-area';
+import { AlertTriangle, Database, Layers, Search, Settings2 } from 'lucide-react';
+import { useSidebarStore } from '@/shared/hooks/useSidebarStore';
+import { PanelSettingsTab } from './PanelSettingsTab';
+import { TopicRow } from './topic-list/TopicRow';
+import { QualitySidebar } from './QualitySidebar';
+import type { PreferencePersistence } from '@/core/preferences/types';
+import { writePreferences } from '@/core/preferences/readWritePreferences';
+import type { McapViewerExtension, McapViewerExtensionContext, SidebarTabContribution } from '@/core/extensions/types';
+import { SidebarExtensionHost } from '@/features/extensions/SidebarExtensionHost';
+import type { DatasetItem } from '@/shared/utils/datasetSources';
+import { formatBytes } from '@/shared/utils/formatBytes';
+import { cn } from '@/shared/lib/utils';
+
+const SIDEBAR_TAB_TRIGGER_CLASS =
+  'flex flex-1 items-center justify-center gap-1 border-b-2 border-transparent px-2 py-2 text-xs font-medium transition-colors hover:bg-accent/70 data-[state=active]:border-primary data-[state=active]:bg-background data-[state=active]:text-primary';
+
+interface SidebarProps {
+  player: Player;
+  datasets: DatasetItem[];
+  activeDatasetId?: string;
+  onDatasetSelect: (id: string) => void;
+  autoDataQualityScan: boolean;
+  onAutoDataQualityScanChange: (enabled: boolean) => void;
+  preferencePersistence: PreferencePersistence;
+  extensionContext: McapViewerExtensionContext;
+  extensions?: McapViewerExtension[];
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({
+  player,
+  datasets,
+  activeDatasetId,
+  onDatasetSelect,
+  autoDataQualityScan,
+  onAutoDataQualityScanChange,
+  preferencePersistence,
+  extensionContext,
+  extensions = [],
+}) => {
+  const { formatMessage } = useIntl();
+  const topics = useMessagePipeline((state: MessagePipelineState) => state.sortedTopics);
+  const activeTab = useSidebarStore((s) => s.tab);
+  const setActiveTab = useSidebarStore((s) => s.setTab);
+  const qualityFilter = useSidebarStore((s) => s.qualityFilter);
+  const setQualityFilter = useSidebarStore((s) => s.setQualityFilter);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTopicName, setSelectedTopicName] = useState<string | null>(null);
+  const dataQualityReport = useMessagePipeline(
+    (state: MessagePipelineState) => state.playerState.progress.dataQualityReport,
+  );
+  const qualityTimelineStart = useMessagePipeline((state: MessagePipelineState) => state.playerState.activeData?.startTime);
+  const extensionTabs = useMemo<SidebarTabContribution[]>(
+    () =>
+      extensions
+        .flatMap((extension) => extension.sidebarTabs ?? [])
+        .slice()
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+    [extensions],
+  );
+
+  const showDatasetsTab = datasets.length !== 1;
+
+  const tabValue = !showDatasetsTab && activeTab === 'datasets' ? 'topics' : activeTab;
+
+  const filteredTopics = useMemo(() => {
+    if (!searchQuery.trim()) return topics;
+    const lowerQ = searchQuery.toLowerCase();
+    return topics.filter(
+      (t: TopicInfo) => t.name.toLowerCase().includes(lowerQ) || t.type.toLowerCase().includes(lowerQ),
+    );
+  }, [topics, searchQuery]);
+
+  useEffect(() => {
+    if (topics.length === 0) {
+      setSelectedTopicName(null);
+      return;
+    }
+    if (selectedTopicName && topics.some((topic: TopicInfo) => topic.name === selectedTopicName)) {
+      return;
+    }
+    setSelectedTopicName(topics[0]?.name ?? null);
+  }, [topics, selectedTopicName]);
+
+  useEffect(() => {
+    const tabId: string = activeTab;
+    const isLegacyTab = tabId === 'annotations';
+    const isKnown =
+      activeTab === 'topics' ||
+      (showDatasetsTab && activeTab === 'datasets') ||
+      activeTab === 'quality' ||
+      activeTab === 'settings' ||
+      extensionTabs.some((tab) => tab.id === activeTab);
+    if (isLegacyTab || !isKnown) {
+      setActiveTab('topics');
+    }
+  }, [activeTab, extensionTabs, setActiveTab, showDatasetsTab]);
+
+
+  return (
+    <aside
+      className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden border-r border-border/70 bg-card [container-name:sidebar] [container-type:inline-size]"
+    >
+      <Tabs.Root
+        value={tabValue}
+        onValueChange={(value) => {
+          if (
+            value === 'topics' ||
+            (showDatasetsTab && value === 'datasets') ||
+            value === 'quality' ||
+            value === 'settings' ||
+            extensionTabs.some((tab) => tab.id === value)
+          ) {
+            setActiveTab(value);
+          }
+        }}
+        className="flex min-h-0 flex-1 flex-col bg-background"
+      >
+        <Tabs.List className="flex shrink-0 border-b border-border/60 bg-muted/20">
+          <Tabs.Trigger value="topics" className={SIDEBAR_TAB_TRIGGER_CLASS}>
+            <Layers size={14} />
+            {formatMessage({ id: 'sidebar.tab.topics' })}
+          </Tabs.Trigger>
+          {showDatasetsTab ? (
+            <Tabs.Trigger value="datasets" className={SIDEBAR_TAB_TRIGGER_CLASS}>
+              <Database size={14} />
+              {formatMessage({ id: 'sidebar.tab.datasets' })}
+            </Tabs.Trigger>
+          ) : null}
+          <Tabs.Trigger value="quality" className={SIDEBAR_TAB_TRIGGER_CLASS}>
+            <AlertTriangle size={14} />
+            {formatMessage({ id: 'sidebar.tab.quality' })}
+          </Tabs.Trigger>
+          <Tabs.Trigger value="settings" className={SIDEBAR_TAB_TRIGGER_CLASS}>
+            <Settings2 size={14} />
+            {formatMessage({ id: 'sidebar.tab.settings' })}
+          </Tabs.Trigger>
+          {extensionTabs.map((tab) => (
+            <Tabs.Trigger key={tab.id} value={tab.id} className={SIDEBAR_TAB_TRIGGER_CLASS}>
+              {tab.icon}
+              {tab.title}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+
+        <Tabs.Content
+          value="topics"
+          className="flex-1 min-h-0 overflow-hidden outline-none data-[state=active]:flex flex-col"
+        >
+          <div className="px-2 py-2 border-b border-border/60 bg-background">
+            <div className="relative flex items-center">
+              <Search className="absolute left-2 text-muted-foreground" size={12} />
+              <input
+                type="text"
+                name="topic-filter"
+                placeholder={formatMessage({ id: 'sidebar.topicFilter' })}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-background border border-input rounded-sm text-xs pl-6 pr-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-ring/40 transition-all"
+              />
+            </div>
+          </div>
+          <ScrollArea className="flex-1 min-h-0">
+            <div className="border-b border-border/50">
+              {filteredTopics.length > 0 ? (
+                filteredTopics.map((topic: TopicInfo) => (
+                  <TopicRow
+                    key={topic.name}
+                    topic={topic}
+                    isSelected={topic.name === selectedTopicName}
+                    onSelect={setSelectedTopicName}
+                  />
+                ))
+              ) : (
+                <div className="text-xs text-muted-foreground italic px-2 mt-4 text-center">
+                  {formatMessage({ id: 'sidebar.noTopics' })}
+                </div>
+              )}
+            </div>
+          </ScrollArea>
+        </Tabs.Content>
+
+        {showDatasetsTab ? (
+          <Tabs.Content
+            value="datasets"
+            className="flex-1 min-h-0 overflow-hidden outline-none data-[state=active]:flex flex-col"
+          >
+            <ScrollArea className="flex-1 min-h-0">
+              <div className="border-b border-border/50">
+                {datasets.length > 0 ? (
+                  datasets.map((dataset) => {
+                    const isActive = dataset.id === activeDatasetId;
+                    const sizeBytes =
+                      dataset.kind === 'file' ? dataset.file?.size : dataset.sizeBytes;
+                    const sizeLabel = formatBytes(sizeBytes) ?? '—';
+                    const rowTitle = [dataset.name, dataset.kind === 'url' ? dataset.url : undefined, sizeLabel]
+                      .filter(Boolean)
+                      .join('\n');
+                    return (
+                      <div
+                        key={dataset.id}
+                        className={cn(
+                          'flex w-full flex-col border-b border-border/50 text-left text-xs transition-colors',
+                          'hover:bg-accent/35',
+                          isActive && 'bg-accent/50 text-foreground',
+                        )}
+                      >
+                        <button
+                          type="button"
+                          title={rowTitle}
+                          aria-current={isActive ? 'true' : undefined}
+                          onClick={() => onDatasetSelect(dataset.id)}
+                          className={cn(
+                            'flex w-full cursor-pointer items-center gap-3 p-2 outline-none',
+                            'focus-visible:ring-1 focus-visible:ring-ring/50',
+                          )}
+                        >
+                          <div className="h-9 min-w-0 flex-1 overflow-hidden text-left">
+                            <div className="line-clamp-2 break-words text-[12px] font-medium leading-[18px] text-foreground">
+                              {dataset.name}
+                              {dataset.kind === 'url' && dataset.url ? (
+                                <>
+                                  <br />
+                                  <span className="text-[10px] font-normal leading-[18px] text-muted-foreground">
+                                    {dataset.url}
+                                  </span>
+                                </>
+                              ) : null}
+                            </div>
+                          </div>
+                          <div className="flex h-9 shrink-0 items-center justify-end whitespace-nowrap text-right font-mono text-[10px] leading-[18px] text-muted-foreground tabular-nums">
+                            {sizeLabel}
+                          </div>
+                        </button>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="text-xs text-muted-foreground italic px-2 mt-4 text-center">
+                    {formatMessage({ id: 'sidebar.noDatasets' })}
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+          </Tabs.Content>
+        ) : null}
+
+        <Tabs.Content
+          value="quality"
+          className="flex-1 min-h-0 overflow-hidden outline-none data-[state=active]:flex flex-col"
+        >
+          <QualitySidebar
+            report={dataQualityReport}
+            filter={qualityFilter}
+            timelineStart={qualityTimelineStart}
+            onFilterChange={setQualityFilter}
+            autoDataQualityScan={autoDataQualityScan}
+            onAutoDataQualityScanChange={(enabled) => {
+              onAutoDataQualityScanChange(enabled);
+              if (preferencePersistence === 'localStorage') {
+                writePreferences({ autoDataQualityScan: enabled });
+              }
+            }}
+            onRequestScan={() => {
+              player.startDataQualityScan?.();
+            }}
+            onSeek={(time) => {
+              player.seek(time);
+            }}
+          />
+        </Tabs.Content>
+
+        <Tabs.Content
+          value="settings"
+          className="flex-1 min-h-0 overflow-hidden outline-none data-[state=active]:flex flex-col"
+        >
+          <PanelSettingsTab player={player} topics={topics} />
+        </Tabs.Content>
+        {extensionTabs.map((tab) => (
+          <Tabs.Content
+            key={tab.id}
+            value={tab.id}
+            className="flex-1 min-h-0 overflow-hidden outline-none data-[state=active]:flex flex-col"
+          >
+            <SidebarExtensionHost contribution={tab} context={extensionContext} />
+          </Tabs.Content>
+        ))}
+      </Tabs.Root>
+    </aside>
+  );
+};
